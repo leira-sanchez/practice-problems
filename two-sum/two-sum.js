@@ -1,0 +1,31 @@
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+//brute force
+// var twoSum = function(nums, target) {
+//     for (let i = 0; i < nums.length; i++) {
+//         for (let j = 1; j < nums.length; j++) {
+//             if (nums[i] + nums[j] === target && i !== j) {
+//                 return [i, j]
+//             }
+//         }
+//     }
+// };
+
+// use memoization
+var twoSum = function(nums, target) {
+    const memo = {};
+    for (let i = 0; i < nums.length; i++) {
+        const m = target - nums[i];
+        if (memo.hasOwnProperty(m)) return [i, memo[m]]
+        else memo[nums[i]] = i
+    }
+}
+
+
+
+
+
+
