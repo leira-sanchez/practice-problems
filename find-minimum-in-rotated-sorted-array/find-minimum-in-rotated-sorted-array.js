@@ -12,26 +12,26 @@
 //     return min
 // };
 
-var findMin = function(nums) {
-    // sort, then return first element
-    return quickSort(nums)[0];
+function findMin(nums) {
+    if(nums.length < 1) return -1;
+    if(nums.length === 1) return nums[0];
     
-};
-
-function quickSort(nums) {
-  if (nums.length < 2) return nums;
-  
-  const pivot = nums[nums.length - 1];
-  const left = [];
-  const right = [];
-  
-  for(let i = 0; i < nums.length - 1; i++) {
-    if(nums[i] < pivot) {
-      left.push(nums[i]);
-    } else {
-      right.push(nums[i]);
+    let left = 0;
+    let right = nums.length - 1;
+    let midpoint;
+    
+    while (left < right) {
+        midpoint = Math.floor((left + right)/2);
+        if(midpoint > 0 && nums[midpoint] < nums[midpoint-1]) {
+            return nums[midpoint];
+        }
+        if(nums[left] <= nums[midpoint] && nums[midpoint] > nums[right]) {
+            // return nums[left];
+            left = midpoint + 1;
+            
+        } else {
+            right = midpoint - 1;
+        }
     }
-  }
-  return [...quickSort(left), pivot, ...quickSort(right)];
-
+    return nums[left]
 }
